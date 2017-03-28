@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "koa": "^2.0.0-alpha.8",
+    "koa-bodyparser": "^3.2.0",
+    "koa-generic-session": "^1.11.5",
+    "koa-onerror": "^3.1.0",
+    "koa-router": "^7.0.1",
+    "xtpl": "^3.3.0"
+  },
+  "scripts": {
+    "start": "babel-node ./src/server.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.2.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-node5": "^12.0.1",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.24.0",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1"
+  }
+}
