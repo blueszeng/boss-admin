@@ -1,0 +1,55 @@
+import path from 'path'
+import Koa from 'koa'
+import session from 'koa-generic-session'
+import Dust from 'koa-dust'
+import convert from 'koa-convert'
+import json from 'koa-json'
+import logger from 'koa-logger'
+import bodyParser from 'koa-bodyparser'
+import koaRedis from 'koa-redis'
+
+import config from './config/config'
+import router from './routes'
+import middlewares from './middlewares'
+
+const redisStore = koaRedis({
+  url: config.redisUrl
+})
+
+const app = new Koa()
+app.keys = [config.secretKeyBase]
+if (config.serveStatic) {
+  app.use(convert(require('koa-static')(path.join(__dirname, './public'))))
+}
+
+app.use(convert(session({
+  store: redisStore,
+  prefix: 'kails:sess:',
+  key: 'kails.sid'
+})))
+
+app.use(bodyParser())
+
+app.use(convert(json()))
+app.use(convert(logger()))
+
+app.use(Dust(path.join(__dirname, 'views'), {
+  // stream: false,
+  compile: true,
+  cache: false,
+  ext: 'dust'
+}))
+app.use(middlewares.catchError)
+
+// csrf
+// app.use(new CSRF({
+//   invalidSessionSecretMessage: 'Invalid session secret',
+//   invalidSessionSecretStatusCode: 403,
+//   invalidTokenMessage: 'Invalid CSRF token',
+//   invalidTokenStatusCode: 403,
+//   excludedMethods: [ 'GET', 'HEAD', 'OPTIONS' ],
+//   disableQuery: false
+// }))
+app.use(middlewares.addHelper)
+app.use(router.routes(), router.allowedMethods())
+app.listen(config.port)

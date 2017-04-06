@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://web.hand999.com/daili_mobile/login.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>商户管理系统登录</title>
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="MobileOptimized" content="240">
+
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+
+  <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+  <meta content="no-cache" http-equiv="pragma">
+  <meta content="0" http-equiv="expires">
+  <meta content="telephone=no, address=no" name="format-detection">
+  <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- Mobile Devices Support @end -->
+    <style type="text/css">
+		/*.body{background:url(images/login_bg.jpg) no-repeat center top;}*/
+		.login_box{width:80%; height:384px; padding:5%; height:auto; background-color:#475c82; position:absolute; left:5%; top:50%;}
+		.pg_title{height:60px; line-height:50px; font-size:1.35em; color:#FFF; border-bottom:solid 1px #f5f5f5;}
+
+		.pg_form{padding:15px;}
+		.pg_form div.put{height:20px; padding:10px; margin-top:15px; border-radius:5px; border-bottom:solid 1px #d7d7d7; background-color:#FFF;}
+		.pg_form div.put1{margin-right:110px; position:relative;}
+		.pg_form input.txt{float:left; width:100%; height:20px; line-height:20px; padding:0px; font-size:1.15em; text-align:left; border:none;}
+		.pg_form div.put1 img{width:100px; height:34px; border:solid 1px #d7d7d7; position:absolute; right:-110px;top:3px;}
+
+		.pg_form div.sel{height:20px; margin-top:20px; text-align:left; font-size:1.25em; color:#FFF;}
+		.pg_form div.sel a{color:#FFF;}
+		.pg_form div.sel a.reg{float:right; color:#FF0; text-decoration:underline;}
+		.pg_form div.sel a.reg:hover{color:#F60;}
+
+		.pg_form div.btn{margin-top:25px; margin-bottom:20px;}
+		.pg_form div.btn input.btn{width:100%; height:42px; color:#FFF; font-size:1.25em; border:0px; border-radius:8px; background-color:#68c1dc;}
+		#an:hover{background:#000}
+	</style>
+</head>
+
+<body class="body">
+<center>
+    <div class="login_box">
+        <div class="pg_title" onclick="location.reload()">商户管理系统</div>
+
+        <div class="pg_form">
+        <form id="myform" name="form1" method="post" action="user/sign_in">
+            <input type="hidden" name="dosubmit" value="yes">
+            <input type="hidden" name="_csrf" value="{csrf}" />
+            <input type="hidden" name="uuid" id='uuid' value="{uuid}" />
+            <div class="put put_t">
+                <input id="uname" name="accounts" type="text" placeholder="请输入代理ID或手机号" value="" class="txt">
+            </div>
+            <div class="put">
+                <input id="pword" name="password" type="password" placeholder="请输入密码" value="" class="txt">
+            </div>
+            <div class="put put1">
+                <input id="verify" name="captcha" autocomplete="off" type="text" class="txt" placeholder="请输入验证码">
+                <img id="getcode"  alt="看不清楚？">
+            </div>
+            <div class="sel">
+                <!--<a href="creatuser.php" class="reg">立即注册</a>-->
+                <input id="isagree" name="isagree" type="checkbox" value="2" checked="" class="cb">
+                <label for="isagree" class="cb">同意</label><a href="<?php echo '__ROOT__/agreement' ?>">《合作协议》</a>
+            </div>
+            <div  class="btn">
+                <input id="an" type="submit" value="登 录" class="btn">
+            </div>
+        </form>
+        </div>
+
+    </div>
+</center>
+<div id="hintbox" class="hint_box">
+ <span id="hintmsg"></span>
+</div>
+<script src="js/user.min.js"></script>
+<script type="text/javascript">
+// function go() {
+// 	document.getElementById("getcode").src = "<?php echo '__ROOT__/Verify' ?> ?"+Math.random();
+// 	}
+
+// 	function checkLogin(){
+// 		<!-- var uname = $("#Accounts").val(); -->
+// 		<!-- if(uname.length == 0){ -->
+// 			<!-- hintPop("请输入您的账号!"); return false; -->
+// 		<!-- } -->
+//
+// 		<!-- var pword = $("#Password").val(); -->
+// 		<!-- if(pword.length == 0){ -->
+// 			<!-- hintPop("请输入密码！"); return false; -->
+// 		<!-- } -->
+//
+// 		<!-- if($("#verify").val() == ""){ -->
+// 		<!-- hintPop("请输入验证码！"); return false; -->
+// 		<!-- } -->
+// 		if($("input[name='isagree']:checked").val() != true){
+// 		hintPop("请先阅读合作协议！"); return false;
+// 		 }
+// 		<!-- hintPop("来这了，信不！");  -->
+// 		<!-- goLogin(); -->
+// 		<!-- $.ajax({ -->
+// 			<!-- url:"prog.php?ac=ajax.class&do=checkcode&ccode=" + $("#verify").val() + "&" + Math.random(), -->
+// 			<!-- success:function(result){ -->
+// 				<!-- if(result == 1){ -->
+// 					<!-- hintPop("开始登陆！"); return false; -->
+// 					<!-- goLogin(); -->
+// 				<!-- }else{ -->
+// 					<!-- hintPop("验证码不正确，请重新输入..."); $("#verify").val(''); return false; -->
+// 				<!-- } -->
+// 			<!-- } -->
+// 		<!-- });	 -->
+// 	}
+//
+// 	<!-- function goLogin(){ -->
+// 		<!-- hintPop("来这了，信不反反复复！");  -->
+// 		<!-- $.post("prog.php?ac=login&do=login", -->
+// 			<!-- { -->
+// 				<!-- cmd:"pdklogin", -->
+// 				<!-- timestamp:"1482890908", -->
+// 				<!-- sign:"e016f23ee50c952625d0c6c0f9ff5f42", -->
+// 				<!-- uname:$("#arround").val(), -->
+// 				<!-- pword:$("#token").val() -->
+// 			<!-- }, -->
+// 			<!-- function(data, status){ -->
+// 				<!-- if(status == "success"){ -->
+// 					<!-- v = $.parseJSON(data); -->
+// 					<!-- if(v.result == 0){ -->
+// 						<!-- hintPop("来这了，信不sdfds 丰东股份！");  -->
+// 						<!-- hintPop(v.errorMsg);return false; -->
+// 					<!-- }else{ -->
+// 						<!-- //checksave($("#yuname").val(), 0); -->
+// 						<!-- window.location.href="index.php"; -->
+// 						<!-- hintPop("来这了，信不丰东股份！");  -->
+// 					<!-- } -->
+// 				<!-- } -->
+// 			<!-- } -->
+// 		<!-- ); -->
+// 	<!-- } -->
+// 	<!-- function hintPop(msg){ -->
+// 		<!-- $("#hintmsg").html(msg); -->
+// 		<!-- $("#hintbox").css({"opacity": "1", "display": "block"}); -->
+// 		<!-- $("#hintbox").animate({"bottom":"80px"}, "last", function(){ -->
+// 			<!-- setTimeout(function(){ -->
+// 				<!-- $("#hintbox").animate({"opacity": "0"}, "last", function(){ -->
+// 					<!-- $("#hintbox").css({"bottom":"0px", "display": "none"}); -->
+// 				<!-- }); -->
+// 			<!-- }, 2000); -->
+// 		<!-- }); -->
+// 	<!-- } -->
+// </script>
+
+</body></html>

@@ -8,6 +8,9 @@
     "node": true,
     "es6": true
   },
+  "globals": {
+    "ENV": true
+  },
   "rules": {
     "arrow-parens": 0
   }
