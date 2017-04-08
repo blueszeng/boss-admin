@@ -39,6 +39,9 @@
 </head>
 
 <body class="body">
+<!-- 弹窗信息 一定要有 -->
+<input id="sysmsg" type="hidden" msg="{sysMsg}" status="{sysStatus}">
+
 <center>
     <div class="login_box">
         <div class="pg_title" onclick="location.reload()">商户管理系统</div>
@@ -68,86 +71,8 @@
             </div>
         </form>
         </div>
-
     </div>
 </center>
-<div id="hintbox" class="hint_box">
- <span id="hintmsg"></span>
-</div>
-<script src="js/user.min.js"></script>
-<script type="text/javascript">
-// function go() {
-// 	document.getElementById("getcode").src = "<?php echo '__ROOT__/Verify' ?> ?"+Math.random();
-// 	}
-
-// 	function checkLogin(){
-// 		<!-- var uname = $("#Accounts").val(); -->
-// 		<!-- if(uname.length == 0){ -->
-// 			<!-- hintPop("请输入您的账号!"); return false; -->
-// 		<!-- } -->
-//
-// 		<!-- var pword = $("#Password").val(); -->
-// 		<!-- if(pword.length == 0){ -->
-// 			<!-- hintPop("请输入密码！"); return false; -->
-// 		<!-- } -->
-//
-// 		<!-- if($("#verify").val() == ""){ -->
-// 		<!-- hintPop("请输入验证码！"); return false; -->
-// 		<!-- } -->
-// 		if($("input[name='isagree']:checked").val() != true){
-// 		hintPop("请先阅读合作协议！"); return false;
-// 		 }
-// 		<!-- hintPop("来这了，信不！");  -->
-// 		<!-- goLogin(); -->
-// 		<!-- $.ajax({ -->
-// 			<!-- url:"prog.php?ac=ajax.class&do=checkcode&ccode=" + $("#verify").val() + "&" + Math.random(), -->
-// 			<!-- success:function(result){ -->
-// 				<!-- if(result == 1){ -->
-// 					<!-- hintPop("开始登陆！"); return false; -->
-// 					<!-- goLogin(); -->
-// 				<!-- }else{ -->
-// 					<!-- hintPop("验证码不正确，请重新输入..."); $("#verify").val(''); return false; -->
-// 				<!-- } -->
-// 			<!-- } -->
-// 		<!-- });	 -->
-// 	}
-//
-// 	<!-- function goLogin(){ -->
-// 		<!-- hintPop("来这了，信不反反复复！");  -->
-// 		<!-- $.post("prog.php?ac=login&do=login", -->
-// 			<!-- { -->
-// 				<!-- cmd:"pdklogin", -->
-// 				<!-- timestamp:"1482890908", -->
-// 				<!-- sign:"e016f23ee50c952625d0c6c0f9ff5f42", -->
-// 				<!-- uname:$("#arround").val(), -->
-// 				<!-- pword:$("#token").val() -->
-// 			<!-- }, -->
-// 			<!-- function(data, status){ -->
-// 				<!-- if(status == "success"){ -->
-// 					<!-- v = $.parseJSON(data); -->
-// 					<!-- if(v.result == 0){ -->
-// 						<!-- hintPop("来这了，信不sdfds 丰东股份！");  -->
-// 						<!-- hintPop(v.errorMsg);return false; -->
-// 					<!-- }else{ -->
-// 						<!-- //checksave($("#yuname").val(), 0); -->
-// 						<!-- window.location.href="index.php"; -->
-// 						<!-- hintPop("来这了，信不丰东股份！");  -->
-// 					<!-- } -->
-// 				<!-- } -->
-// 			<!-- } -->
-// 		<!-- ); -->
-// 	<!-- } -->
-// 	<!-- function hintPop(msg){ -->
-// 		<!-- $("#hintmsg").html(msg); -->
-// 		<!-- $("#hintbox").css({"opacity": "1", "display": "block"}); -->
-// 		<!-- $("#hintbox").animate({"bottom":"80px"}, "last", function(){ -->
-// 			<!-- setTimeout(function(){ -->
-// 				<!-- $("#hintbox").animate({"opacity": "0"}, "last", function(){ -->
-// 					<!-- $("#hintbox").css({"bottom":"0px", "display": "none"}); -->
-// 				<!-- }); -->
-// 			<!-- }, 2000); -->
-// 		<!-- }); -->
-// 	<!-- } -->
-// </script>
-
-</body></html>
+<script src="js/user.js"></script>
+</body>
+</html>

@@ -2,8 +2,6 @@
 import '../styles/main.css'
 
 // Import a couple modules for testing.
-import { sayHelloTo } from './modules/mod1'
-import addArray from './modules/mod2'
 import $ from 'jquery'
 
 // Import a logger for easier debugging.
@@ -39,8 +37,6 @@ if (ENV !== 'production') {
 //   }
 // })
 // Run some functions from our imported modules.
-const result1 = sayHelloTo('Jason')
-const result2 = addArray([1, 2, 3, 4])
 const refrushCaptcha = () => {
   $('#imgs').attr('src', `/captcha?uuid=${$('#imgs').attr('uuid')}&${Math.random()}`)
 }
@@ -52,7 +48,4 @@ $('#imgs').click((event) => {
 })
 
 // Print the results on the page.
-const printTarget = document.getElementsByClassName('debug__output')[0]
-$('.debug__output').html(`sayHelloTo('Jason') => ${result1}\n\n`)
 // printTarget.innerText =
-printTarget.innerText += `addArray([1, 2, 3, 4]) => ${result2}`

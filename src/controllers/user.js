@@ -6,7 +6,8 @@ import config from '../config/config'
 // console.log(Uuid())
 const index = async (ctx, next) => {
   let uuid = Uuid()
-  await ctx.render('login', {uuid: uuid, csrf: ctx.csrf})
+  console.log('query===>', ctx.query)
+  await ctx.render('login', {uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg})
 }
 const signIn = async (ctx, next) => {
   console.log(config.salt, bcrypt.hashSync('123456' + config.salt, 10))
@@ -39,24 +40,31 @@ const login = async (ctx, next) => {
   const body = ctx.request.body
   // body.captcha = body.getcode
   body.email = body.accounts
-  console.log('dsfdsfsdfdsfds===>', body)
   if (!(body.email && body.password && body.captcha && body.uuid)) {
     const locals = {
-      nav: 'signin'
+      sysStatus: 'error',
+      sysMsg: escape('信息不能为空')
     }
-    return await ctx.render('user', locals)
+    // ctx.redirect('/user?ab=cd')
+    // console.log()
+    ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    return
+
+    // return await ctx.render('user', locals)
   }
-  console.log('dsfdsfsdfdsfds===>22')
   // 验证验证码
   let ccapValue = await catche.getCache(`captcha:${body.uuid}`)
   console.log('ccc==>', ccapValue, body.captcha.toUpperCase())
   if (ccapValue !== body.captcha.toUpperCase()) {
     console.log('captcha error!')
     ctx.body = 'captcha error!'
-    return
+    const locals = {
+      sysStatus: 'error',
+      sysMsg: escape('验证码错误')
+    }
+    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
     // return ctx.redirect('user')
   }
-  console.log('dsfdsfsdfdsfds===>33')
   // 验证用户
   let user = await models.User.findOne({ where: { email: body.email } })
   // console.log('uere', user)
@@ -64,14 +72,20 @@ const login = async (ctx, next) => {
     ctx.session.userId = user.id
     ctx.status = 302
     console.log('log in successfully!')
-    ctx.body = 'log in successfully!'
+    const locals = {
+      sysStatus: 'success',
+      sysMsg: escape('登陆成功')
+    }
+    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    // ctx.body = 'log in successfully!'
     // ctx.redirect('')
   } else {
     const locals = {
-      nav: 'signIn'
+      sysStatus: 'error',
+      sysMsg: escape('用户名或密码错误')
     }
     console.log('user name or password error.')
-    await ctx.render('user', locals)
+    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
   }
 }
 
