@@ -2,7 +2,7 @@
 <!-- saved from url=(0045)http://web.hand999.com/daili_mobile/login.php -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>商户管理系统登录</title>
+<title>商户管理系统登录2</title>
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta name="MobileOptimized" content="240">
 
@@ -44,7 +44,7 @@
 
 <center>
     <div class="login_box">
-        <div class="pg_title" onclick="location.reload()">商户管理系统</div>
+        <div class="pg_title">商户管理系统</div>
 
         <div class="pg_form">
         <form id="myform" name="form1" method="post" action="user/sign_in">
@@ -64,7 +64,7 @@
             <div class="sel">
                 <!--<a href="creatuser.php" class="reg">立即注册</a>-->
                 <input id="isagree" name="isagree" type="checkbox" value="2" checked="" class="cb">
-                <label for="isagree" class="cb">同意</label><a href="<?php echo '__ROOT__/agreement' ?>">《合作协议》</a>
+                <label for="isagree" class="cb">同意</label><a>《合作协议》</a>
             </div>
             <div  class="btn">
                 <input id="an" type="submit" value="登 录" class="btn">

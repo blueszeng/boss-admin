@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "art.dialog": "^7.0.0",
     "bcrypt": "^1.0.2",
     "ccap": "^0.6.10",
     "co": "^4.6.0",
     "co-redis": "^2.1.1",
     "debug": "^2.6.0",
     "gulp-promisify": "^1.2.2",
+    "joi": "^10.4.1",
     "jquery": "^3.2.1",
     "jquery-ui": "^1.12.1",
     "koa": "^2.0.0-alpha.8",
@@ -30,10 +32,11 @@
   },
   "scripts": {
     "start": "nodemon --exec babel-node ./src/app.js -b es2015,stage-0",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "e2e": "testcafe chrome ./e2es/test.js"
   },
   "devDependencies": {
-    "art.dialog": "^7.0.0",
+    "ava": "^0.19.0",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.1",
@@ -52,8 +55,6 @@
     "gulp": "^3.9.1",
     "gulp-batch": "^1.0.5",
     "gulp-less": "^3.3.0",
-    "gulp-watch": "^4.3.11",
-    "livereload": "^0.6.2",
     "mocha": "^3.2.0",
     "npm-run-all": "^3.1.2",
     "postcss-cssnext": "^2.9.0",

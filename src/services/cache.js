@@ -1,5 +1,5 @@
 import wrapper from 'co-redis'
-import redis from '../config/redis'
+import redis from '../configs/redis'
 const redisClient = wrapper(redis)
 let redisAvailable = false
 redisClient.on('error', (_error) => {
@@ -45,7 +45,7 @@ const cleanCache = async function (key) {
     return
   }
   await redisClient.del(key)
-  console.log('clean', key)
+  // console.log('clean', key)
 }
 export default {
   setCache,

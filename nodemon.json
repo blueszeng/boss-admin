@@ -11,8 +11,9 @@
   "events": {
   },
   "watch": [
+    "src/app.js",
     "src/common/",
-    "src/config/",
+    "src/configs/",
     "src/controllers/",
     "src/middlewares/",
     "src/models/",

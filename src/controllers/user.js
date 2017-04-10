@@ -2,25 +2,22 @@ import models from '../models/index'
 import Uuid from 'uuid/v1'
 import catche from '../services/cache'
 import bcrypt from 'bcrypt'
-import config from '../config/config'
-// console.log(Uuid())
+import config from '../configs/config'
+import debug from '../utils/debug'
+import {Joi, validate} from '../utils/validator'
+const log = debug('controllers_user=> ')
+
 const index = async (ctx, next) => {
   let uuid = Uuid()
-  console.log('query===>', ctx.query)
   await ctx.render('login', {uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg})
 }
 const signIn = async (ctx, next) => {
-  console.log(config.salt, bcrypt.hashSync('123456' + config.salt, 10))
-  await models.User.sync({force: false})
+  // await models.User.sync({force: false})
   await models.User.create({
     name: 'zeng',
     email: 'zaq1999@163.com',
     password: bcrypt.hashSync('123456' + config.salt, 10)
   })
-  // ctx.body = userInfo
-  // if (ctx.state.isUserSignIn) {
-  //   return ctx.redirect('/')
-  // }
   const locals = {
     nav: 'signIn'
   }
@@ -32,59 +29,63 @@ const loginOut = (ctx, next) => {
     return ctx.redirect('/')
   }
   ctx.session.userId = null
-  console.log('logout successfully!')
+  log('logout successfully!')
   ctx.redirect('/')
 }
 
 const login = async (ctx, next) => {
   const body = ctx.request.body
-  // body.captcha = body.getcode
   body.email = body.accounts
-  if (!(body.email && body.password && body.captcha && body.uuid)) {
+
+ // 参数验证
+  const schema = Joi.object().keys({
+    email: Joi.string().email().required().label('邮箱'),
+    password: Joi.string().required().label('密码'),
+    captcha: Joi.string().length(4).required().label('验证码')
+  })
+  const data = {
+    email: body.email,
+    password: body.password,
+    captcha: body.captcha
+  }
+  try {
+    await validate(data, schema)
+  } catch (err) {
+    log('captcha is null!')
+    log(err)
     const locals = {
       sysStatus: 'error',
-      sysMsg: escape('信息不能为空')
+      sysMsg: escape(err.message)
     }
-    // ctx.redirect('/user?ab=cd')
-    // console.log()
-    ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
-    return
-
-    // return await ctx.render('user', locals)
+    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
   }
-  // 验证验证码
+  // 验证码验证
   let ccapValue = await catche.getCache(`captcha:${body.uuid}`)
-  console.log('ccc==>', ccapValue, body.captcha.toUpperCase())
   if (ccapValue !== body.captcha.toUpperCase()) {
-    console.log('captcha error!')
-    ctx.body = 'captcha error!'
+    log('captcha error!')
     const locals = {
       sysStatus: 'error',
       sysMsg: escape('验证码错误')
     }
     return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
-    // return ctx.redirect('user')
   }
-  // 验证用户
+  // 用户登录验证
   let user = await models.User.findOne({ where: { email: body.email } })
-  // console.log('uere', user)
   if (user && user.authenticate(body.password)) {
     ctx.session.userId = user.id
     ctx.status = 302
-    console.log('log in successfully!')
+    log('log in successfully!')
     const locals = {
       sysStatus: 'success',
       sysMsg: escape('登陆成功')
     }
     return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
-    // ctx.body = 'log in successfully!'
-    // ctx.redirect('')
   } else {
+    console.log('user name or password error.')
     const locals = {
       sysStatus: 'error',
       sysMsg: escape('用户名或密码错误')
     }
-    console.log('user name or password error.')
     return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
   }
 }

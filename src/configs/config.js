@@ -13,5 +13,5 @@ const defaultConfig = {
 }
 
 const config = _.merge(defaultConfig, configs[env])
-console.log(config)
+// console.log(config)
 module.exports = config

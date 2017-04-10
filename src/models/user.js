@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import config from '../config/config'
+import config from '../configs/config'
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -36,9 +36,6 @@ export default (sequelize, DataTypes) => {
     },
     instanceMethods: {
       authenticate: function (value) {
-        console.log('fkkkkkkkk')
-        console.log(value + config.salt)
-        console.log(this.password)
         if (bcrypt.compareSync(value + config.salt, this.password)) {
           return true
         } else {

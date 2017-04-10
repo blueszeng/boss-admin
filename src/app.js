@@ -8,7 +8,7 @@ import logger from 'koa-logger'
 import bodyParser from 'koa-bodyparser'
 import koaRedis from 'koa-redis'
 
-import config from './config/config'
+import config from './configs/config'
 import router from './routes'
 import middlewares from './middlewares'
 
@@ -21,11 +21,10 @@ app.keys = [config.secretKeyBase]
 if (config.serveStatic) {
   app.use(convert(require('koa-static')(path.join(__dirname, './public'))))
 }
-
 app.use(convert(session({
   store: redisStore,
-  prefix: 'kails:sess:',
-  key: 'kails.sid'
+  prefix: 'boss:sess:',
+  key: 'boss.sid'
 })))
 
 app.use(bodyParser())
@@ -40,16 +39,6 @@ app.use(Dust(path.join(__dirname, 'views'), {
   ext: 'dust'
 }))
 app.use(middlewares.catchError)
-
-// csrf
-// app.use(new CSRF({
-//   invalidSessionSecretMessage: 'Invalid session secret',
-//   invalidSessionSecretStatusCode: 403,
-//   invalidTokenMessage: 'Invalid CSRF token',
-//   invalidTokenStatusCode: 403,
-//   excludedMethods: [ 'GET', 'HEAD', 'OPTIONS' ],
-//   disableQuery: false
-// }))
 app.use(middlewares.addHelper)
 app.use(router.routes(), router.allowedMethods())
 app.listen(config.port)
