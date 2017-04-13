@@ -52,13 +52,13 @@
             <input type="hidden" name="_csrf" value="{csrf}" />
             <input type="hidden" name="uuid" id='uuid' value="{uuid}" />
             <div class="put put_t">
-                <input id="uname" name="accounts" type="text" placeholder="请输入代理ID或手机号" value="" class="txt">
+                <input id="uname" for="username" name="accounts" type="text" placeholder="请输入代理ID或手机号" value="" class="txt">
             </div>
             <div class="put">
-                <input id="pword" name="password" type="password" placeholder="请输入密码" value="" class="txt">
+                <input id="pword" for="password" name="password" type="password" placeholder="请输入密码" value="" class="txt">
             </div>
             <div class="put put1">
-                <input id="verify" name="captcha" autocomplete="off" type="text" class="txt" placeholder="请输入验证码">
+                <input id="verify" for="captcha" name="captcha" autocomplete="off" type="text" class="txt" placeholder="请输入验证码">
                 <img id="getcode"  alt="看不清楚？">
             </div>
             <div class="sel">

@@ -31,8 +31,8 @@ gulp.task('rollup', function () {
       }),
       resolve({
         jsnext: true,
-        main: true,
-        browser: true
+        browser: true,
+        main: true
       }),
       commonjs(),
       eslint({
@@ -52,10 +52,11 @@ gulp.task('rollup', function () {
         ],
         plugins: [
           'external-helpers'
-        ]
+        ],
+        babelrc: false
       }),
       replace({
-        exclude: 'node_modules/**',
+        // exclude: 'node_modules/**',
         ENV: JSON.stringify(process.env.NODE_ENV || 'development')
       }),
       (process.env.NODE_ENV === 'production' && uglify())
