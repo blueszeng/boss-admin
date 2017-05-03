@@ -13,6 +13,7 @@
   "watch": [
     "src/app.js",
     "src/common/",
+    "src/routes/",
     "src/configs/",
     "src/controllers/",
     "src/middlewares/",

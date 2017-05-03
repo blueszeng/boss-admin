@@ -14,12 +14,10 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
 
-fs
-.readdirSync(__dirname)
-.filter((file) => {
-  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
-})
-.forEach((file) => {
+fs.readdirSync(__dirname).forEach((file) => {
+  if (!/\.js$/.test(file) || file === basename) {
+    return;
+  }
   var model = sequelize['import'](path.join(__dirname, file))
   db[model.name] = model
 })

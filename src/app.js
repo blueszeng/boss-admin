@@ -11,8 +11,6 @@ import koaRedis from 'koa-redis'
 import config from './configs/config'
 import router from './routes'
 import middlewares from './middlewares'
-import a from 'lodash'
-console.log(a)
 
 const redisStore = koaRedis({
   url: config.redisUrl
