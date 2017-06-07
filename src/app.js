@@ -30,8 +30,9 @@ app.use(bodyParser())
 
 app.use(convert(json()))
 app.use(convert(logger()))
-
-app.use(middlewares.catchError)
+app.use(middlewares.logMiddleware)
+// app.use(middlewares.catchError)
 app.use(middlewares.addHelper)
 app.use(router.routes(), router.allowedMethods())
+console.log('listen port:', config.port)
 app.listen(config.port)

@@ -1,0 +1,14 @@
+[2017-06-07 15:25:26.024] [INFO] bossadmin - [2017-06-07 15:25:26] [::1] [GET] [/api/about] [200] [6ms]
+                Request Id: wrBqhjlkmEWEXHrX
+                Request Headers: {"host":"localhost:3000","connection":"keep-alive","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36","postman-token":"1dce50c3-1ebb-2175-82ac-0ad55d40ccde","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"zh-CN,zh;q=0.8"}
+                Request Query: {}
+                Request Body: {}
+                Response Headers: {"content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"wrBqhjlkmEWEXHrX","data":"zzzzzz"}
+[2017-06-07 17:33:14.501] [INFO] bossadmin - [2017-06-07 17:33:14] [::1] [GET] [/api/about] [200] [8ms]
+                Request Id: voBEcybBBGA3lT3o
+                Request Headers: {"host":"localhost:3000","connection":"keep-alive","cache-control":"no-cache","user-agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36","postman-token":"7400fd3e-bd14-86ca-af54-fc6491e7d55c","accept":"*/*","accept-encoding":"gzip, deflate, sdch, br","accept-language":"zh-CN,zh;q=0.8"}
+                Request Query: {}
+                Request Body: {}
+                Response Headers: {"content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"voBEcybBBGA3lT3o","data":"zzzzzz"}

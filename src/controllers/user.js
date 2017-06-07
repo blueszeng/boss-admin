@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 import config from '../configs/config'
 import debug from '../utils/debug'
 import {Joi, validate} from '../utils/validator'
-const log = debug('controllers_user=> ')
+const log = debug('controllers_user=>')
 
 const index = async (ctx, next) => {
   let uuid = Uuid()
@@ -13,15 +13,15 @@ const index = async (ctx, next) => {
 }
 const signIn = async (ctx, next) => {
   // await models.User.sync({force: false})
-  await models.User.create({
-    name: 'zeng',
-    email: 'zaq1999@163.com',
-    password: bcrypt.hashSync('123456' + config.salt, 10)
-  })
-  const locals = {
-    nav: 'signIn'
-  }
-  await ctx.render('login', locals)
+  // await models.User.create({
+  //   name: 'zeng',
+  //   email: 'zaq1999@163.com',
+  //   password: bcrypt.hashSync('123456' + config.salt, 10)
+  // })
+  // const locals = {
+  //   nav: 'signIn'
+  // }
+  // await ctx.render('login', locals)
 }
 
 const loginOut = (ctx, next) => {
@@ -52,19 +52,13 @@ const login = async (ctx, next) => {
     await validate(data, schema)
   } catch (err) {
     log('captcha is null!')
-    log(err)
-    ctx.body = err.message
-    return
+    return Promise.reject(err.message)
   }
   // 验证码验证
   let ccapValue = await catche.getCache(`captcha:${body.uuid}`)
   if (ccapValue !== body.captcha.toUpperCase()) {
     log('captcha error!')
-    const locals = {
-      sysStatus: 'error',
-      sysMsg: escape('验证码错误')
-    }
-    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    return Promise.reject('验证码错误')
   }
   // 用户登录验证
   let user = await models.User.findOne({ where: { email: body.email } })
@@ -72,18 +66,10 @@ const login = async (ctx, next) => {
     ctx.session.userId = user.id
     ctx.status = 302
     log('log in successfully!')
-    const locals = {
-      sysStatus: 'success',
-      sysMsg: escape('登陆成功')
-    }
-    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
-  } else {
+     return Promise.reject('登陆成功')
+    } else {
     console.log('user name or password error.')
-    const locals = {
-      sysStatus: 'error',
-      sysMsg: escape('用户名或密码错误')
-    }
-    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    return Promise.reject('用户名或密码错误')
   }
 }
 
