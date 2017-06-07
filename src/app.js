@@ -1,7 +1,6 @@
 import path from 'path'
 import Koa from 'koa'
 import session from 'koa-generic-session'
-import Dust from 'koa-dust'
 import convert from 'koa-convert'
 import json from 'koa-json'
 import logger from 'koa-logger'
@@ -32,12 +31,6 @@ app.use(bodyParser())
 app.use(convert(json()))
 app.use(convert(logger()))
 
-app.use(Dust(path.join(__dirname, 'views'), {
-  // stream: false,
-  compile: true,
-  cache: false,
-  ext: 'dust'
-}))
 app.use(middlewares.catchError)
 app.use(middlewares.addHelper)
 app.use(router.routes(), router.allowedMethods())

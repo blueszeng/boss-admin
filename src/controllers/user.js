@@ -53,11 +53,8 @@ const login = async (ctx, next) => {
   } catch (err) {
     log('captcha is null!')
     log(err)
-    const locals = {
-      sysStatus: 'error',
-      sysMsg: escape(err.message)
-    }
-    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    ctx.body = err.message
+    return
   }
   // 验证码验证
   let ccapValue = await catche.getCache(`captcha:${body.uuid}`)
