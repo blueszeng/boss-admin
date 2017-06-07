@@ -3,6 +3,7 @@ import Koa from 'koa'
 import session from 'koa-generic-session'
 import convert from 'koa-convert'
 import json from 'koa-json'
+import cors from 'koa-cors'
 import logger from 'koa-logger'
 import bodyParser from 'koa-bodyparser'
 import koaRedis from 'koa-redis'
@@ -16,6 +17,7 @@ const redisStore = koaRedis({
 })
 
 const app = new Koa()
+app.use(convert(cors()));
 app.keys = [config.secretKeyBase]
 if (config.serveStatic) {
   app.use(convert(require('koa-static')(path.join(__dirname, './public'))))

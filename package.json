@@ -16,6 +16,7 @@
     "koa": "^2.0.0-alpha.8",
     "koa-bodyparser": "^3.2.0",
     "koa-compose": "^3.2.1",
+    "koa-cors": "^0.0.16",
     "koa-csrf": "^3.0.5",
     "koa-dust": "^0.0.5",
     "koa-generic-session": "^1.11.5",
