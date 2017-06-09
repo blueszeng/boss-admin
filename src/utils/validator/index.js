@@ -9,6 +9,7 @@ import language from './language'
  */
 const validate = async (values, schema) => {
   const validResult = Joi.validate(values, schema, { language })
+    //  console.log("gggggggggg", validResult)
   const error = validResult.error
   if (!error) {
     return Promise.resolve(validResult.value)
@@ -16,6 +17,7 @@ const validate = async (values, schema) => {
   const allErrors = error.details
   if (allErrors.length > 0) {
     const curError = allErrors[0]
+ 
     return Promise.reject(curError)
   } else {
     return Promise.resolve()

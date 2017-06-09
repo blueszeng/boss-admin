@@ -6,15 +6,15 @@ export default {
     wrapArrays: true
   },
   any: {
-    unknown: 'is not allowed',
-    invalid: 'contains an invalid value',
-    empty: 'is not allowed to be empty',
+    unknown: '是不允许的',
+    invalid: '包含一个无效的值',
+    empty: '不允许是空的',
     required: '{{key}}必须提供',
-    allowOnly: 'must be one of {{valids}}',
-    default: 'threw an error when running default method'
+    allowOnly: '必须是一个 {{valids}}',
+    default: '在运行默认方法时抛出一个错误'
   },
   alternatives: {
-    base: 'not matching any of the allowed alternatives'
+    base: '不匹配任何被允许的替代方案'
   },
   array: {
     base: '{{key}}必须是数组类型',
@@ -45,13 +45,13 @@ export default {
     length: 'must be {{limit}} bytes'
   },
   date: {
-    base: 'must be a number of milliseconds or valid date string',
-    min: 'must be larger than or equal to "{{limit}}"',
-    max: 'must be less than or equal to "{{limit}}"',
-    isoDate: 'must be a valid ISO 8601 date',
+    base: '{{key}}必须是几毫秒或有效的日期字符串',
+    min: '{{key}}必须大于或等于{{limit}}',
+    max: '{{key}}必须小于或等于{{limit}}',
+    isoDate: '{{key}}必须是有效的ISO 8601日期',
     timestamp: {
-      javascript: 'must be a valid timestamp or number of milliseconds',
-      unix: 'must be a valid timestamp or number of seconds'
+      javascript: '{{key}}必须是有效的时间戳或毫秒数',
+      unix: '{{key}}必须是有效的时间戳或秒数'
     },
     ref: 'references "{{ref}}" which is not a date'
   },
@@ -107,8 +107,8 @@ export default {
       base: '{{key}}必须符合正则表达式: {{pattern}}',
       name: '{{key}}必须是{{name}}'
     },
-    email: 'must be a valid email',
-    uri: 'must be a valid uri',
+    email: '{{key}}必须是有效的电子邮件',
+    uri: '{{key}}必须是一个有效的uri',
     uriCustomScheme: 'must be a valid uri with a scheme matching the {{scheme}} pattern',
     isoDate: 'must be a valid ISO 8601 date',
     guid: 'must be a valid GUID',

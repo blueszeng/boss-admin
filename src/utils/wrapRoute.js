@@ -3,7 +3,7 @@ import _debug from 'debug'
 import ValidationError from '../utils/error/ValidationError'
 const debug = _debug('utils:wrapRoute')
 
-export default (fn, ...args) => {
+const wrapRoute = (fn, ...args) => {
   return async (ctx) => {
     const reqId = ctx.state.reqId
     const isPost = ctx.method === 'POST'
@@ -44,4 +44,18 @@ export default (fn, ...args) => {
       }
     }
   }
+}
+
+const wrapAllRoute = (controllerObject) => {
+  for (let i in controllerObject) {
+    if (_.isFunction(controllerObject[i])) {
+      controllerObject[i] = wrapRoute(controllerObject[i])
+    }
+  }
+}
+
+
+export {
+  wrapRoute,
+  wrapAllRoute
 }

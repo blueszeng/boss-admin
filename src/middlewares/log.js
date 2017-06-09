@@ -5,9 +5,9 @@ import path from 'path'
 import _ from 'lodash'
 import { secretKeyBase } from '../configs/config'
 const logAppenders = []
-logAppenders.push({
-  type: 'console'
-})
+// logAppenders.push({
+//   type: 'console'
+// })
 
 logAppenders.push({
   type: 'file', filename: 'logs/bossadmin.log', category: 'bossadmin'

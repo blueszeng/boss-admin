@@ -1,6 +1,6 @@
 import models from '../models/index'
 import Uuid from 'uuid/v1'
-import catche from '../services/cache'
+import catche from '../utils/cache'
 import bcrypt from 'bcrypt'
 import config from '../configs/config'
 import debug from '../utils/debug'
@@ -12,12 +12,13 @@ const index = async (ctx, next) => {
   await ctx.render('login', {uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg})
 }
 const signIn = async (ctx, next) => {
-  // await models.User.sync({force: false})
-  // await models.User.create({
-  //   name: 'zeng',
-  //   email: 'zaq1999@163.com',
-  //   password: bcrypt.hashSync('123456' + config.salt, 10)
-  // })
+  await models.User.sync({force: false})
+  await models.User.create({
+    name: 'zeng',
+    email: 'zaq1999@163.com',
+    password: bcrypt.hashSync('123456' + config.salt, 10)
+  })
+  ctx.body = 'ok'
   // const locals = {
   //   nav: 'signIn'
   // }
@@ -36,7 +37,6 @@ const loginOut = (ctx, next) => {
 const login = async (ctx, next) => {
   const body = ctx.request.body
   body.email = body.accounts
-
  // 参数验证
   const schema = Joi.object().keys({
     email: Joi.string().email().required().label('邮箱'),
@@ -51,11 +51,12 @@ const login = async (ctx, next) => {
   try {
     await validate(data, schema)
   } catch (err) {
-    log('captcha is null!')
+    log('captcha is null!', err.message)
     return Promise.reject(err.message)
   }
   // 验证码验证
   let ccapValue = await catche.getCache(`captcha:${body.uuid}`)
+  console.log(body.uuid, ccapValue, body.captcha.toUpperCase());
   if (ccapValue !== body.captcha.toUpperCase()) {
     log('captcha error!')
     return Promise.reject('验证码错误')
@@ -64,9 +65,9 @@ const login = async (ctx, next) => {
   let user = await models.User.findOne({ where: { email: body.email } })
   if (user && user.authenticate(body.password)) {
     ctx.session.userId = user.id
-    ctx.status = 302
+    // ctx.status = 302
     log('log in successfully!')
-     return Promise.reject('登陆成功')
+     return Promise.resolve('登陆成功')
     } else {
     console.log('user name or password error.')
     return Promise.reject('用户名或密码错误')
