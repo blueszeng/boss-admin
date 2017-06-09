@@ -1,6 +1,7 @@
 node_modules/
 build/
 .DS_Store
+npm-debug.log
 .tags
 dump.rdb
 src/public/js/
