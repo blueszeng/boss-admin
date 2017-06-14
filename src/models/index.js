@@ -3,7 +3,9 @@ import path from 'path'
 import Sequelize from 'sequelize'
 import { env } from '../configs/config'
 import database from '../configs/database'
+import _debug from 'debug'
 
+const debug = _debug('backend:models:index')
 const config = database[env]
 const basename = path.basename(module.filename)
 const db = {}
@@ -21,6 +23,14 @@ fs.readdirSync(__dirname).forEach((file) => {
   var model = sequelize['import'](path.join(__dirname, file))
   db[model.name] = model
 })
-
+async function initCreateDb(sequelize) {
+  try {
+    await sequelize.sync({ force: false })
+    debug('init createDb successed')
+  } catch (err) {
+     console.log(`init createDb failed to error: ${err}`)
+  }
+}
+initCreateDb(sequelize)
 db.sequelize = sequelize
 export default db

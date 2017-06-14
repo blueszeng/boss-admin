@@ -1,15 +1,15 @@
 import Router from 'koa-router'
-import users from '../controllers/user'
+import users from '../controllers/auth'
 import csrf from '../middlewares/csrf'
 import { wrapAllRoute } from '../utils/wrapRoute'
 wrapAllRoute(users)
 
 const router = Router({
-  prefix: '/user'
+  prefix: '/auth'
 })
 
-router.post('/sign_in', users.login)
-router.get('/sign', users.signIn)
+router.post('/loginLocal', users.loginLocal)
+router.get('/signIn', users.signIn)
 // router.get('/:id/edit', articles.checkLogin, articles.checkArticleOwner, articles.edit);
 
 module.exports = router

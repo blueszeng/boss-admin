@@ -1,5 +1,6 @@
 import models from '../models'
 import logMiddleware from './log'
+import authMiddleware from './auth'
 const catchError = async (ctx, next) => {
   try {
     await next()
@@ -40,5 +41,6 @@ const addHelper = async (ctx, next) => {
 export default {
   catchError,
   addHelper,
-  logMiddleware
+  logMiddleware,
+  authMiddleware
 }
