@@ -1,7 +1,8 @@
 {
   "presets": [
-    "es2015",
-    "stage-0"
+    "node5",
+    "stage-3"
+
   ],
   "plugins": [
     "transform-runtime"

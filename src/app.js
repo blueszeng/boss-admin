@@ -1,5 +1,5 @@
 import path from 'path'
-import Koa from 'koa'
+import Koa from './extendlib/koa.io'
 import session from 'koa-generic-session'
 import convert from 'koa-convert'
 import json from 'koa-json'
@@ -15,8 +15,8 @@ import middlewares from './middlewares'
 const redisStore = koaRedis({
   url: config.redisUrl
 })
-
 const app = new Koa()
+
 app.use(convert(cors()));
 app.keys = [config.secretKeyBase]
 if (config.serveStatic) {
@@ -40,3 +40,18 @@ app.use(router.routes(), router.allowedMethods())
 console.log('listen port:', config.port)
 app.listen(config.port)
 
+
+app.io.use(function* (next) {
+  // on connect
+  console.log(ctx, next)
+  yield* next;
+  // on disconnect
+});
+
+
+// app.io.route('newMessage', function* () {
+//    console.log("gggg", this.args)
+//   // var message = this.args[0];
+ 
+//   this.emit('newMessage', this.url);
+//  });
