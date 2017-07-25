@@ -13,7 +13,7 @@ var database = {
   },
   production: {
     username: process.env.DATABASE_USERNAME_PRO || 'root',
-    password: process.env.DATABASE_PASSWORD_PRO || '123456',
+    password: process.env.DATABASE_PASSWORD_PRO || '_123456',
     database: process.env.DATABASE_NAME_PRO || 'test',
     host: process.env.DATABASE_HOST_PRO || '127.0.0.1',
     dialect: 'mysql',

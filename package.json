@@ -29,6 +29,7 @@
     "remodal": "^1.1.1",
     "rollup-plugin-babel": "^2.7.1",
     "sequelize": "^3.30.4",
+    "socket.io": "^2.0.3",
     "testcafe": "^0.14.0",
     "toastr": "^2.1.2",
     "uuid": "^3.0.1"
