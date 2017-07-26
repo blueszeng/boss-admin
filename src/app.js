@@ -55,3 +55,7 @@ app.io.route('newMessage', async function (ctx, next) {
  
   this.emit('newMessage', 12312);
  });
+
+
+// var io = require('socket.io-client')('http://localhost:3000');
+// io.emit("newMessage", "dkyz");
