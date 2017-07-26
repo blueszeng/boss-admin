@@ -8,6 +8,8 @@ var debug = require('debug')('koa.io:socket.io:namespace');
 var compose = require('koa-compose');
 var Socket = require('./socket');
 var co = require('co');
+const convert = require('koa-convert');
+const isGeneratorFunction = require('is-generator-function');
 
 /**
  * onconnect middleware
@@ -89,12 +91,10 @@ exports.add = function add(client, fn) {
     this.gen = compose(this.fns.concat([this.router.middleware(), this._onconnect]));
   }
 
-  console.log("sbbbbbbbbbbbbbbbbbb")
-
   co.wrap(this.gen).call(socket)
-  .then(function(data) {
-    console.log("23423423")
-  })
+    .then(function (data) {
+      console.log("23423423")
+    })
     .catch(function catchError(err) {
       /* istanbul ignore else */
       if (client.conn.readyState === 'open') {
@@ -116,6 +116,10 @@ exports.add = function add(client, fn) {
  * @api public
  */
 exports.use = function use(fn) {
+  if (typeof fn !== 'function') throw new TypeError('middleware must be a function!');
+  if (isGeneratorFunction(fn)) {
+    fn = convert(fn);
+  }
   this.fns.push(createMiddleware(fn, this));
   return this;
 };

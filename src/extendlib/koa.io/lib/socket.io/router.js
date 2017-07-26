@@ -80,7 +80,6 @@ Router.prototype.middleware = function middleware() {
   var gen = compose(this.fns);
    console.log('in router middleware');
   return function* route(next) {
-    console.log('in router middleware');
     if (!router.fns.length) {
       console.log('router not exist');
       return yield* next;
