@@ -41,17 +41,17 @@ console.log('listen port:', config.port)
 app.listen(config.port)
 
 
-app.io.use(function* (next) {
-  // on connect
-  console.log(ctx, next)
-  yield* next;
-  // on disconnect
-});
+// app.io.use(async function (ctx, next) {
+//   // on connect
+//   console.log(ctx, next)
+//   await next();
+//   // on disconnect
+// });
 
 
-// app.io.route('newMessage', function* () {
-//    console.log("gggg", this.args)
-//   // var message = this.args[0];
+app.io.route('newMessage', async function (ctx, next) {
+   console.log("gggg", sdgsgsfsdf)
+  // var message = this.args[0];
  
-//   this.emit('newMessage', this.url);
-//  });
+  this.emit('newMessage', 12312);
+ });

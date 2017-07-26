@@ -5,7 +5,7 @@
  */
 
 var debug = require('debug')('koa.io:socket.io:router');
-const convert = require('koa-convert');
+var convert = require('koa-convert');
 var compose = require('koa-compose');
 var co = require('co');
 
@@ -49,14 +49,15 @@ function createRoute(_event, _fn) {
   }
 
   var checker = createChecker(event);
-
-  return function* createdRoute(next) {
-    debug('check `%s` to match `%s`, %s', this.event, event, checker(this.event));
-    if (!checker(this.event)) {
-      return yield* next;
+  console.log("gssssssssssssssssssssssssssssssssssssss")
+  return async function createdRoute(ctx, next) {
+    console.log("fffffffffffffffffffffff")
+    console.log('check `%s` to match `%s`, %s', ctx.event, event, checker(ctx.event));
+    if (!checker(ctx.event)) {
+      return await next();
     }
-    var args = [next].concat(this.data);
-    yield* fn.apply(this, args);
+    var args = [next].concat(ctx.data);
+    await fn.apply(ctx, args);
   };
 }
 
@@ -78,19 +79,22 @@ function Router() {
 Router.prototype.middleware = function middleware() {
   var router = this;
   var gen = compose(this.fns);
-   console.log('in router middleware');
-  return function* route(next) {
+  console.log('in router middleware',this.fns.length);
+  return async function route(ctx, next) {
+    console.log("sbsbsbsb")
     if (!router.fns.length) {
       console.log('router not exist');
-      return yield* next;
+      return await next();
     }
-    var self = this;
-    var socket = this.socket;
-
+    var self = ctx;
+    var socket = ctx.socket;
+  console.log("sbsbsbsb")
     // replace socket.onevent to start the router
     socket._onevent = socket.onevent;
+    console.log("sdfsdf", socket._onevent)
     socket.onevent = function monkeypatchedOnEvent(packet) {
       var args = packet.data || [];
+      console.log("sbsbsbsb", self.data )
       if (!args.length) {
         console.log('event args not exist');
         return socket._onevent(packet);
@@ -98,8 +102,8 @@ Router.prototype.middleware = function middleware() {
 
       self.event = args[0];
       self.data = args.slice(1);
-
-      co.wrap(gen).call(self)
+      console.log("sdfsdfsfsdfsdfsdfsdfsdfdsf")
+      gen(self)
         .then(function genSuccess() {
           socket._onevent(packet);
         })
@@ -109,7 +113,7 @@ Router.prototype.middleware = function middleware() {
         });
     };
 
-    yield* next;
+    await next();
   };
 };
 

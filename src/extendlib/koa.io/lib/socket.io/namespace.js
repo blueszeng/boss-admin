@@ -16,33 +16,34 @@ const isGeneratorFunction = require('is-generator-function');
  */
 
 function onconnect(nsp) {
-  return function* onconnectMiddleware() {
-    debug('on connect');
-    yield process.nextTick;
-
-    var socket = this.socket;
-    var fn = this._fn;
-
+  console.log('on connect');
+  return async function onconnectMiddleware(ctx, next) {
+    // await process.nextTick();
+    var socket = ctx.socket;
+    var fn = ctx._fn;
+    console.log('on connectsbsbsbsb22');
     if (socket.client.conn.readyState !== 'open') {
-      debug('next called after client was closed - ignoring socket');
+      console.log('next called after client was closed - ignoring socket');
       return;
     }
-
     nsp.sockets.push(socket);
     socket.onconnect();
 
+    // console.log("gssggg", fn)
     if (fn) fn();
 
     nsp.emit('connect', socket);
     nsp.emit('connection', socket);
-
+    console.log('on connectsbsbsbsb2255');
     // after socket emit disconnect, resume middlewares
-    yield function ondisconnect(done) {
+    function ondisconnect(done) {
+      console.log('disssss')
       socket.once('disconnect', function socketDisconnected(reason) {
         debug('socket disconnect by %s', reason);
         done(null, reason);
       });
     };
+    ondisconnect(next);
   };
 }
 
@@ -55,19 +56,19 @@ function onconnect(nsp) {
  */
 
 function createMiddleware(fn, nsp) {
-  return function* middleware(next) {
-    console.log('yield next, continue middlewares', next);
+  return async function middleware(ctx, next) {
+    console.log('yield next, continue middlewares');
     var done = true;
 
-    function* _next() {
+    async function _next() {
       console.log('yield next, continue middlewares');
       done = false;
-      yield* next;
+      await next();
     }
 
-    yield* fn.call(this, _next.call(this));
+    await fn.call(this, _next.call(this));
 
-    if (done) yield* nsp._onconnect.call(this);
+    if (done) await nsp._onconnect.call(this);
   };
 }
 
@@ -90,11 +91,7 @@ exports.add = function add(client, fn) {
     debug('compose middlewares');
     this.gen = compose(this.fns.concat([this.router.middleware(), this._onconnect]));
   }
-
-  co.wrap(this.gen).call(socket)
-    .then(function (data) {
-      console.log("23423423")
-    })
+  this.gen(socket)
     .catch(function catchError(err) {
       /* istanbul ignore else */
       if (client.conn.readyState === 'open') {
@@ -104,7 +101,7 @@ exports.add = function add(client, fn) {
         }
       }
     });
-
+  console.log('gsssssssss')
   return socket.socket;
 };
 
