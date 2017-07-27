@@ -16,35 +16,32 @@ const isGeneratorFunction = require('is-generator-function');
  */
 
 function onconnect(nsp) {
-  console.log('on connect');
+  debug('on connect');
   return async function onconnectMiddleware(ctx, next) {
-    // await process.nextTick();
-    var socket = ctx.socket;
-    var fn = ctx._fn;
-    console.log('on connectsbsbsbsb22');
-    if (socket.client.conn.readyState !== 'open') {
-      console.log('next called after client was closed - ignoring socket');
-      return;
-    }
-    nsp.sockets.push(socket);
-    socket.onconnect();
+    process.nextTick(
+      function () {
+        var socket = ctx.socket;
+        var fn = ctx._fn;
+        if (socket.client.conn.readyState !== 'open') {
+          console.log('next called after client was closed - ignoring socket');
+          return;
+        }
+        nsp.sockets.push(socket);
+        socket.onconnect();
 
-    // console.log("gssggg", fn)
-    if (fn) fn();
-
-    nsp.emit('connect', socket);
-    nsp.emit('connection', socket);
-    console.log('on connectsbsbsbsb2255');
-    // after socket emit disconnect, resume middlewares
-    function ondisconnect(done) {
-      console.log('disssss')
-      socket.once('disconnect', function socketDisconnected(reason) {
-        debug('socket disconnect by %s', reason);
-        done(null, reason);
+        if (fn) fn();
+        nsp.emit('connect', socket);
+        nsp.emit('connection', socket);
+        // after socket emit disconnect, resume middlewares
+        function ondisconnect() {
+          socket.once('disconnect', async function socketDisconnected(reason) {
+            debug('socket disconnect by %s', reason);
+            await next();
+          });
+        };
+        ondisconnect();
       });
-    };
-    ondisconnect(next);
-  };
+  }
 }
 
 /**
@@ -57,18 +54,9 @@ function onconnect(nsp) {
 
 function createMiddleware(fn, nsp) {
   return async function middleware(ctx, next) {
-    console.log('yield next, continue middlewares');
-    var done = true;
-
-    async function _next() {
-      console.log('yield next, continue middlewares');
-      done = false;
-      await next();
-    }
-
-    await fn.call(this, _next.call(this));
-
-    if (done) await nsp._onconnect.call(this);
+    debug('yield next, continue middlewares');
+    var args = [ctx, next];
+    await fn.apply(ctx, args);
   };
 }
 
@@ -101,7 +89,6 @@ exports.add = function add(client, fn) {
         }
       }
     });
-  console.log('gsssssssss')
   return socket.socket;
 };
 

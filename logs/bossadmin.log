@@ -439,3 +439,10 @@
                 Request Body: {}
                 Response Headers: {"access-control-allow-origin":"*","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
                 Response Body: {"reqId":"","message":"未授权的访问"}
+[2017-07-27 17:00:11.946] [INFO] bossadmin - [2017-07-27 17:00:11] [::1] [GET] [/favicon.ico] [401] [3ms]
+                Request Id: 
+                Request Headers: {"host":"localhost:3000","connection":"keep-alive","user-agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36","accept-encoding":"gzip, deflate, sdch","accept-language":"zh-CN,zh;q=0.8","cookie":"pholcusSession=48dd9c0dc81c20ebdbec9bb30e7f6b75"}
+                Request Query: {}
+                Request Body: {}
+                Response Headers: {"access-control-allow-origin":"*","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"","message":"未授权的访问"}

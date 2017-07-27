@@ -5,8 +5,8 @@
  */
 
 var debug = require('debug')('koa.io:socket.io:router');
-var convert = require('koa-convert');
 var compose = require('koa-compose');
+var _ = require('lodash');
 var co = require('co');
 
 /**
@@ -42,23 +42,31 @@ function createChecker(_name) {
 
 function createRoute(_event, _fn) {
   var fn = _fn;
+  if (!_.isArray(_fn)) {
+    fn = [_fn]
+  }
   var event = _event;
-  if (typeof event === 'function') {
+  if (_.isFunction(event) || _.isArray(event)) {
     fn = event;
     event = null;
   }
 
   var checker = createChecker(event);
-  console.log("gssssssssssssssssssssssssssssssssssssss")
   return async function createdRoute(ctx, next) {
-    console.log("fffffffffffffffffffffff")
-    console.log('check `%s` to match `%s`, %s', ctx.event, event, checker(ctx.event));
+    debug('check `%s` to match `%s`, %s', ctx.event, event, checker(ctx.event));
     if (!checker(ctx.event)) {
       return await next();
     }
-    var args = [next].concat(ctx.data);
-    await fn.apply(ctx, args);
+    var gen = compose(fn);
+    gen(ctx, next)
+      .catch(function genError(err) {
+        console.log('error: ' + err.message);
+        console.error(err.stack);
+      });
   };
+  // console.log("gsssssssssssssssssssss")
+  // var args = [ctx, next];
+  // await fn[0].apply(ctx, args);
 }
 
 /**
@@ -79,33 +87,37 @@ function Router() {
 Router.prototype.middleware = function middleware() {
   var router = this;
   var gen = compose(this.fns);
-  console.log('in router middleware',this.fns.length);
+  debug('in router middleware');
   return async function route(ctx, next) {
-    console.log("sbsbsbsb")
     if (!router.fns.length) {
-      console.log('router not exist');
+      debug('router not exist');
       return await next();
     }
     var self = ctx;
     var socket = ctx.socket;
-  console.log("sbsbsbsb")
     // replace socket.onevent to start the router
-    socket._onevent = socket.onevent;
-    console.log("sdfsdf", socket._onevent)
+    socket._onevent = socket.onevent; // save old onevent func
     socket.onevent = function monkeypatchedOnEvent(packet) {
       var args = packet.data || [];
-      console.log("sbsbsbsb", self.data )
       if (!args.length) {
         console.log('event args not exist');
-        return socket._onevent(packet);
+        return socket._onevent(packet); //call old onevent 
       }
 
       self.event = args[0];
-      self.data = args.slice(1);
-      console.log("sdfsdfsfsdfsdfsdfsdfsdfdsf")
+      self.data = args.slice(1)[0];
+      (async function () {
+        if (ctx.decrypt && _.isFunction(ctx.decrypt)) {  // decrypt data
+          try {
+            self.data = await ctx.decrypt(self.data);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      })()
       gen(self)
         .then(function genSuccess() {
-          socket._onevent(packet);
+          socket._onevent(packet); //call old onevent 
         })
         .catch(function genError(err) {
           console.log('error: ' + err.message);

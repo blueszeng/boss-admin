@@ -14,7 +14,7 @@ var delegate = require('delegates');
 var Cookies = require('cookies');
 var parse = require('parseurl');
 var qs = require('querystring');
-
+var _ = require('lodash');
 /**
  * mock res for cookies
  * @type {Object}
@@ -63,7 +63,7 @@ delegate(socket, 'socket')
   .getter('handshake')
   .method('join')
   .method('leave')
-  .method('emit')
+  // .method('emit')
   .method('to')
   .method('in')
   .method('send')
@@ -92,6 +92,9 @@ Socket.prototype.__defineGetter__('header', function headerGetter() {
 Socket.prototype.__defineGetter__('headers', function headersGetter() {
   return this.request.headers;
 });
+
+
+
 
 /**
  * Get request URL.
@@ -306,11 +309,11 @@ Socket.prototype.get = function socketGet(_field) {
   var req = this.request;
   var field = _field.toLowerCase();
   switch (field) {
-  case 'referer':
-  case 'referrer':
-    return req.headers.referrer || req.headers.referer;
-  default:
-    return req.headers[field];
+    case 'referer':
+    case 'referrer':
+      return req.headers.referrer || req.headers.referer;
+    default:
+      return req.headers[field];
   }
 };
 
@@ -319,6 +322,28 @@ Socket.prototype.get = function socketGet(_field) {
 Socket.prototype.set = function socketSet() {
   debug('socket.io can not set header');
 };
+
+
+// emit message if set encrypt 
+//  befor emit encrypt.
+
+Socket.prototype.emit = function (event, message) {
+  var msg = message;
+  var self = this;
+  (async function () {   // encrypt
+    if (self.encrypt && _.isFunction(self.encrypt)) {
+      try {
+        msg = await self.encrypt(msg);
+      } catch (err) {
+        debug(err);
+      }
+    }
+  })()
+  this.socket.emit(event, msg);
+  debug('emit message to client');
+};
+
+
 
 /**
  * Module exports.
