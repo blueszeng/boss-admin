@@ -81,6 +81,7 @@ exports.add = function add(client, fn) {
   }
   this.gen(socket)
     .catch(function catchError(err) {
+      console.log(err)
       /* istanbul ignore else */
       if (client.conn.readyState === 'open') {
         /* istanbul ignore else */

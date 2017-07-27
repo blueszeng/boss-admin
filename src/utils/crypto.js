@@ -5,23 +5,15 @@ const encryptCipher = async (str) => {
   var cipher = crypto.createCipher(cipheralgorithm, cipherSecret);
   var enc = cipher.update(str, "utf8", "hex");
   enc += cipher.final("hex")
-  console.log(enc)
+  // console.log(enc)
   return Promise.resolve(enc)
 }
-
-
-// (async () => {
-//   var a = await encryptCipher("dkyz");
-//   console.log(a);
-//   console.log(decryptCipher(a))
-// })()
-
 
 const decryptCipher = async (str) => {
   var decipher = crypto.createDecipher(cipheralgorithm, cipherSecret);
   var dec = decipher.update(str, "hex", "utf8");
   dec += decipher.final("utf8");
-  console.log(dec)
+  // console.log(dec)
   return Promise.resolve(dec)
 }
 

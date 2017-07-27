@@ -86,9 +86,12 @@ function Router() {
 
 Router.prototype.middleware = function middleware() {
   var router = this;
+    // console.log('in router middleware', this.fns, compose);
   var gen = compose(this.fns);
-  debug('in router middleware');
+  // console.log('in router middleware', gen);
+  //  console.log('in router middleware');
   return async function route(ctx, next) {
+     debug('in router middleware');
     if (!router.fns.length) {
       debug('router not exist');
       return await next();

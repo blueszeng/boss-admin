@@ -12,6 +12,7 @@ import config from './configs/config'
 import router from './routes'
 import middlewares from './middlewares'
 import crypto from './utils/crypto'
+import ioRoute from './socket/routes'
 
 const redisStore = koaRedis({
   url: config.redisUrl
@@ -48,10 +49,9 @@ app.io.use(async function (ctx, next) {
   // disconnect
 });
 
-app.io.route('newMessage', 
-  async function (ctx, next) {
-    console.log(ctx.data)
-    ctx.emit("newMessage", ctx.data)
-  });
+ioRoute(app.io); // add socket route
 
-
+// app.io.route("newMessage", async (ctx, next) => {
+//   console.log(ctx.data)
+//   ctx.emit("newMessage", ctx.data)
+// })
