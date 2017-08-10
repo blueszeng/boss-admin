@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt'
-import config from '../configs/config'
+// import bcrypt from 'bcrypt'
+// import config from '../configs/config'
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -7,41 +7,34 @@ export default (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: DataTypes.STRING,
+    money: {
+      type: DataTypes.INTEGER,
       validate: {
         notEmpty: true,
         len: [1, 50]
       }
     },
-    email: {
-      type: DataTypes.STRING,
+    commission: {
+      type: DataTypes.INTEGER,
       validate: {
         notEmpty: true,
         isEmail: true
-      }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
       }
     }
   }, {
     underscored: true,
     tableName: 'users',
-    indexes: [{unique: true, fields: ['email']}],
+    indexes: [{unique: true, fields: ['id']}],
     classMethods: {
     },
     instanceMethods: {
-      authenticate: function (value) {
-        if (bcrypt.compareSync(value + config.salt, this.password)) {
-          return true
-        } else {
-          return false
-        }
-      }
+      // authenticate: function (value) {
+      //   if (bcrypt.compareSync(value + config.salt, this.password)) {
+      //     return true
+      //   } else {
+      //     return false
+      //   }
+      // }
     }
   })
   return User

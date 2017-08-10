@@ -122,6 +122,7 @@ const setHashCache = async function (key, field, value, expire = HASH_KEY_EXPIRE
 
 
 export default {
+  client: redisClient,
   setCache,
   getCache,
   getHashCache,

@@ -50,8 +50,3 @@ app.io.use(async function (ctx, next) {
 });
 
 ioRoute(app.io); // add socket route
-
-// app.io.route("newMessage", async (ctx, next) => {
-//   console.log(ctx.data)
-//   ctx.emit("newMessage", ctx.data)
-// })

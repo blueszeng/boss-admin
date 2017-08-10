@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "wechat-api": "^1.35.0",
+    "wechat-pay": "^0.2.5"
+  }
+}
