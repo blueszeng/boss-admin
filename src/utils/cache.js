@@ -1,6 +1,7 @@
 import wrapper from 'co-redis'
 import redis from '../configs/redis'
 const redisClient = wrapper(redis)
+let HASH_KEY_EXPIRE =  120
 let redisAvailable = false
 redisClient.on('error', (_error) => {
   console.log('connect error===>')
@@ -69,6 +70,7 @@ const getHashCache = async function (key, field, isStoreJsonField = false) {
     let data = {}
     let hashData = await redisClient.hget(key, field)
     data = hashData
+    console.log(data)
     if (isStoreJsonField) {
       data = JSON.parse(hashData.toString());
     }
@@ -78,10 +80,12 @@ const getHashCache = async function (key, field, isStoreJsonField = false) {
   let data = {}
   let hashData = await redisClient.hgetall(key)
   if (isStoreJsonField) {
-    data = hashData
-  } else {
     for (var userId in hashData) {
       data[userId] = JSON.parse(hashData[userId]);
+    }
+  } else {
+    if (!!hashData) {
+       data = hashData
     }
   }
   return Promise.resolve(data)
@@ -93,7 +97,7 @@ const setHashCache = async function (key, field, value, expire = HASH_KEY_EXPIRE
   }
 
   if (field instanceof Array) {
-    var fields = field
+    let fields = field
     fields.forEach(function (field, index) {
       if (field instanceof Object) {
         fields[index] = JSON.stringify(field)

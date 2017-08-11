@@ -446,3 +446,115 @@
                 Request Body: {}
                 Response Headers: {"access-control-allow-origin":"*","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
                 Response Body: {"reqId":"","message":"未授权的访问"}
+[2017-08-11 18:12:51.874] [INFO] bossadmin - [2017-08-11 18:12:51] [::ffff:192.168.0.101] [GET] [/api/bet/playerBet] [401] [10ms]
+                Request Id: ydrNhONDVoqYbh8
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","cache-control":"no-cache","postman-token":"548bf2a5-de71-a9fb-e29c-fe19f8ba95b8","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {}
+                Response Headers: {"access-control-allow-origin":"*","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"ydrNhONDVoqYbh8","message":"未授权的访问"}
+[2017-08-11 18:13:02.533] [INFO] bossadmin - [2017-08-11 18:13:02] [::ffff:192.168.0.101] [GET] [/api/bet/playerBets] [401] [0ms]
+                Request Id: 9l61UqzWBAZkKSdP
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","cache-control":"no-cache","postman-token":"737b3924-c26d-9d81-7294-25209daa8742","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {}
+                Response Headers: {"access-control-allow-origin":"*","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"9l61UqzWBAZkKSdP","message":"未授权的访问"}
+[2017-08-11 18:13:15.178] [INFO] bossadmin - [2017-08-11 18:13:15] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [38ms]
+                Request Id: 9l61UqzWBA79VFPK
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"26","postman-token":"11b8cb18-87dc-cd70-9daf-0356c0665c6a","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"token":"RsxzuegEVUD284P981Cz"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"9l61UqzWBA79VFPK","message":"无法执行所需的请求"}
+[2017-08-11 18:14:15.471] [INFO] bossadmin - [2017-08-11 18:14:15] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [20ms]
+                Request Id: 3yoqSan3qPLjpFgV
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"26","postman-token":"a3bbb841-f649-2b89-a867-3e8db9eece8f","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"token":"RsxzuegEVUD284P981Cz"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"3yoqSan3qPLjpFgV","message":"用户必须提供"}
+[2017-08-11 18:16:08.501] [INFO] bossadmin - [2017-08-11 18:16:08] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [10ms]
+                Request Id: QwkDcMVlW86j7CV3
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"70","postman-token":"2cf2eb15-3cbb-f03e-6949-27a9a584ecb9","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"12345","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"QwkDcMVlW86j7CV3","message":"用户的值必须大于或者等于100000"}
+[2017-08-11 18:16:15.392] [INFO] bossadmin - [2017-08-11 18:16:15] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [12ms]
+                Request Id: QwkDcMVlW8VRjhAN
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"4a99508c-8d32-76b8-fa0c-0da2f867b222","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"QwkDcMVlW8VRjhAN","message":"下注的长度必须大于5个字符"}
+[2017-08-11 18:17:37.032] [INFO] bossadmin - [2017-08-11 18:17:36] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [36ms]
+                Request Id: Q1m2sMVlWmZaNFz8
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"751a0d8d-8b5f-8fb9-5283-0223a3fd8991","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"Q1m2sMVlWmZaNFz8","message":"无法执行所需的请求"}
+[2017-08-11 18:17:40.792] [INFO] bossadmin - [2017-08-11 18:17:40] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [19ms]
+                Request Id: 5EmWH19Gw794OTM
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"348bb293-b38e-4a6b-a3b7-efcecfc4cad2","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"5EmWH19Gw794OTM","message":"无法执行所需的请求"}
+[2017-08-11 18:17:56.381] [INFO] bossadmin - [2017-08-11 18:17:56] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [69ms]
+                Request Id: bPkTWm8bYgvmsPR
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"073e2015-cf38-c838-12af-1f5fd5837e10","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"bPkTWm8bYgvmsPR","message":"无法执行所需的请求"}
+[2017-08-11 18:18:26.884] [INFO] bossadmin - [2017-08-11 18:18:26] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [51ms]
+                Request Id: 7ybKTg81E7vqEs1B
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"1a3694dd-e78a-2cc7-bce5-caf8905acdff","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"7ybKTg81E7vqEs1B","message":"无法执行所需的请求"}
+[2017-08-11 18:19:26.123] [INFO] bossadmin - [2017-08-11 18:19:26] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [66ms]
+                Request Id: 5E7gt19Gwzog6hEB
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"d76bb31c-7a4f-8697-22fd-5dd47c660d55","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"5E7gt19Gwzog6hEB","message":"无法执行所需的请求"}
+[2017-08-11 18:20:55.231] [INFO] bossadmin - [2017-08-11 18:20:55] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [54ms]
+                Request Id: pbAWU8zBVQ4REtkE
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"72ea6788-536e-841c-0eb4-5569074f47f6","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"pbAWU8zBVQ4REtkE","message":"无法执行所需的请求"}
+[2017-08-11 18:21:12.536] [INFO] bossadmin - [2017-08-11 18:21:12] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [70ms]
+                Request Id: XmyOh6RGDnBZlt8q
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"414765c1-a348-136b-e03c-761b40c30a7c","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"XmyOh6RGDnBZlt8q","message":"无法执行所需的请求"}
+[2017-08-11 18:21:29.749] [INFO] bossadmin - [2017-08-11 18:21:29] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [51ms]
+                Request Id: W5y2iPRbq8pwpFaY
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"360e6ee9-4f9d-0345-c240-969a47ea5c3f","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"W5y2iPRbq8pwpFaY","message":"无法执行所需的请求"}
+[2017-08-11 18:21:59.912] [INFO] bossadmin - [2017-08-11 18:21:59] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [88ms]
+                Request Id: EqnjSZnq3jVMOs5k
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"6eccb166-3c2b-e1fb-f5fa-15c5d07dd57e","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"EqnjSZnq3jVMOs5k","message":"无法执行所需的请求"}
+[2017-08-11 18:23:10.811] [INFO] bossadmin - [2017-08-11 18:23:10] [::ffff:192.168.0.101] [POST] [/api/bet/playerBet] [510] [46ms]
+                Request Id: Eg9jtZnq3qlb3fy
+                Request Headers: {"host":"192.168.0.135:3000","connection":"keep-alive","content-length":"71","postman-token":"76b9c1ca-ef11-07b4-d324-b4c5073375ec","cache-control":"no-cache","origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36","content-type":"application/x-www-form-urlencoded","accept":"*/*","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4"}
+                Request Query: {}
+                Request Body: {"userId":"123450","sceneId":"0","rateStr":"大","periodNo":"20180101011","money":"10"}
+                Response Headers: {"access-control-allow-origin":"chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop","access-control-allow-methods":"GET,HEAD,PUT,POST,DELETE","content-type":"application/json; charset=utf-8"}
+                Response Body: {"reqId":"Eg9jtZnq3qlb3fy","message":"无法执行所需的请求"}

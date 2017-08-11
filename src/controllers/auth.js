@@ -67,7 +67,6 @@ const loginWechat = async (ctx, next) => {
 }
 
 
-
 export default {
   loginLocal,
   loginWechat

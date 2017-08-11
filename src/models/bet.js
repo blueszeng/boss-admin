@@ -50,9 +50,9 @@ export default (sequelize, DataTypes) => {
       }
     },
     updateTime: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       validate: {
-        defaultValue: Sequelize.NOW
+        defaultValue: DataTypes.NOW
       }
     }
   }, {

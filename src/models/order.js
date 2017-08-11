@@ -27,9 +27,9 @@ export default (sequelize, DataTypes) => {
       }
     },
     createTime: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       validate: {
-        defaultValue: Sequelize.NOW
+        defaultValue: DataTypes.NOW
       }
     }
   }, {

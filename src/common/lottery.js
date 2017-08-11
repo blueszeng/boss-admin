@@ -1,5 +1,5 @@
-import cache from '../../utils/cache'
-import { COUNTER, DRAWLOTTERY_QUEUE } from '../../utils/cache_key'
+import cache from '../utils/cache'
+import { COUNTER, DRAWLOTTERY_QUEUE } from '../utils/cache_key'
 
 const getLotteryInfo = async () => {
   let counter, drawLyValue = []

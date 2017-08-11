@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import moment from 'moment'
 import { transaction } from '../../utils/transaction'
-import db from '../../models'
+import models from '../../models/index'
 import lottery from '../../common/lottery'
 import MysqlError from '../../utils/error/MysqlError'
 
@@ -20,9 +20,9 @@ const registerWechat = async (openid) => {
   const wechatProfile = await getUserWechatProfile(openid)
   // 开始保存事务
   let userInfo = await transaction(async (t) => {
-    let user = await db.User.create({ money: 0, commission: 0 }, { transaction: t })
+    let user = await models.User.create({ money: 0, commission: 0 }, { transaction: t })
     const userId = john.get({ plain: true }).id
-    await db.Wechatstrategy.create({ userId: userId, openid: openid, unionId: wechatProfile.unionid }, { transaction: t })
+    await models.Wechatstrategy.create({ userId: userId, openid: openid, unionId: wechatProfile.unionid }, { transaction: t })
     return Promise.resolve({
       openid,
       userId
