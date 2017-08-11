@@ -9,7 +9,7 @@ const router = Router({
 })
 
 router.post('/loginLocal', users.loginLocal)
-router.get('/signIn', users.signIn)
+router.post('/loginWechat', users.loginWechat)
 // router.get('/:id/edit', articles.checkLogin, articles.checkArticleOwner, articles.edit);
 
 module.exports = router

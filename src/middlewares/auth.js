@@ -16,7 +16,7 @@ const setUnauthrization = (ctx) => {
 const allowPassPathAndMethod = (path, method) => {
   const allowedPathMethods = [
     { path: '/api/auth/loginLocal', method: 'POST' },
-    { path: '/api/auth/signIn', method: 'GET' }
+    { path: '/api/auth/loginWechat', method: 'POST' }
   ]
   let isAllowed = false
   for (let allowedPathMethod of allowedPathMethods) {

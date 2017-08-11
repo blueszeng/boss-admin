@@ -5,36 +5,11 @@ import bcrypt from 'bcrypt'
 import config from '../configs/config'
 import debug from '../utils/debug'
 import { Joi, validate } from '../utils/validator'
-import { createToken } from '../services/auth/login'
+import { createToken, loginOrRegisterWechat } from '../services/auth/login'
+import { getOpenid } from '../services/wechat/oauth'
 const log = debug('controllers_user=>')
 
-const index = async (ctx, next) => {
-  let uuid = Uuid()
-  await ctx.render('login', { uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
-}
-const signIn = async (ctx, next) => {
-  // await models.User.sync({force: false})
-  // await models.User.create({
-  //   name: 'zeng',
-  //   email: 'zaq1999@163.com',
-  //   password: bcrypt.hashSync('123456' + config.salt, 10)
-  // })
-  return "ok"
-  // const locals = {
-  //   nav: 'signIn'
-  // }
-  // await ctx.render('login', locals)
-}
-
-const loginOut = (ctx, next) => {
-  if (!ctx.state.isUserSignIn) {
-    return ctx.redirect('/')
-  }
-  ctx.session.userId = null
-  log('logout successfully!')
-  ctx.redirect('/')
-}
-
+//密码登陆
 const loginLocal = async (ctx, next) => {
   const body = ctx.request.body
   body.email = body.accounts
@@ -78,9 +53,22 @@ const loginLocal = async (ctx, next) => {
   }
 }
 
+// 微信登陆
+const loginWechat = async (ctx, next) => {
+  const validSchema = Joi.object().keys({
+    code: Joi.string().length(32).required().label('微信身份验证代码')
+  })
+  const { code } = await validate(ctx.request.body, validSchema)
+  const openid = await getOpenid(code)
+  const userProfile = await loginOrRegisterWechat(openid)
+  const token = createToken(userProfile.id, ctx.headers['user-agent'], 1)
+  ctx.response.set('x-boss-admin-token', token)
+  return Promise.resolve(userProfile)
+}
+
+
+
 export default {
-  index,
-  signIn,
-  loginOut,
-  loginLocal
+  loginLocal,
+  loginWechat
 }
