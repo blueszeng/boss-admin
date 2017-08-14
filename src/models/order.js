@@ -5,6 +5,10 @@ export default (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      notEmpty: true,
+    },
     sdcustomno: {
       type: DataTypes.STRING,
       validate: {

@@ -25,34 +25,28 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: true,
-        len: [1, 255]
+        // len: [1, 255]
       }
     },
     money: {
       type: DataTypes.FLOAT,
       validate: {
         notEmpty: true,
-        defaultValue: 0
+        // defaultValue: 0
       }
     },
     win: {
       type: DataTypes.FLOAT,
       validate: {
         notEmpty: true,
-        defaultValue: 0
+        // defaultValue: 0
       }
     },
     state: {
       type: DataTypes.INTEGER,
       validate: {
         notEmpty: true,
-        defaultValue: 0
-      }
-    },
-    updateTime: {
-      type: DataTypes.DATE,
-      validate: {
-        defaultValue: DataTypes.NOW
+        // defaultValue: false
       }
     }
   }, {

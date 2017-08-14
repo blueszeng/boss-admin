@@ -14,7 +14,7 @@ const defaultConfig = {
   wechatSecret: '263ecc320579be8c52c1fa7f000f4c5b',
   wechatMchid: '1346625101',
   wechatPayApiKey: 'deerwarwechat1234567891011121314',
-  wechatNotifyUrl: 'http://wechat.deerwar.com/api/common/wechat/notify'
+  wechatNotifyUrl: 'http://wechat.deerwar.com/api/common/wechat/pay'
 }
 
 const config = _.merge(defaultConfig, configs[env])

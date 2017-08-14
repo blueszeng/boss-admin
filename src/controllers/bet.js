@@ -22,7 +22,7 @@ initConfig()
 
 
 const playerBet = async (ctx, next) => {
-  const body = ctx.request.body
+  let body = ctx.request.body
   // 参数验证
   const schema = Joi.object().keys({
     userId: Joi.number().min(100000).required().label('用户'),
@@ -32,7 +32,7 @@ const playerBet = async (ctx, next) => {
     money: Joi.number().min(5).required().label('下注'),
   })
   try {
-    await validate(body, schema)
+    body = await validate(body, schema)
   } catch (err) {
     log('验证下注参数错误', err.message)
     return Promise.reject(err.message)
@@ -42,13 +42,13 @@ const playerBet = async (ctx, next) => {
     log('选号有误', rateStr)
     return Promise.reject('选号有误')
   }
-  log(rateId)
+  console.log(rateId)
   let user = await models.User.findOne({ where: { id: body.userId } })
-  if (!user || user.userMoney - body.money < 0) {
-    log('金额过低', user.userMoney - body.money)
+
+  if (!user || user.money - body.money < 0) {
+    log('金额过低', user.money - body.money)
     return Promise.reject('你的金额过低请充值')
   }
-
   try {
     // 写入数据 库
     const data = {
@@ -56,16 +56,18 @@ const playerBet = async (ctx, next) => {
       sceneId: body.sceneId,
       rateId: rateId,
       periodNo: body.periodNo,
-      money: body.money
+      money: body.money,
+      state: 0
     }
-    log(data)
+    // log(data)
     await transaction(async (t) => {
       await models.Bet.create(data, { transaction: t })
-      await models.User.update({ money: -body.money }, { transaction: t })
+      await models.User.update({ money: models.User.get() - data.money },  { where: {id: data.userId} }, { transaction: t })
       return Promise.resolve(true)
     })
     // 写入缓存信息
-    let globalBatInfo = await cache.getHashCache(`${PLAYER_BET}_${rateId}`)
+    let globalBatInfo = await cache.getHashCache(`${PLAYER_BET}_${body.periodNo}_${data.rateId}`)
+        log(globalBatInfo)
     if (!Object.keys(globalBatInfo).length) { //第一次插入
       globalBatInfo = {
         "money": 0,
@@ -74,11 +76,11 @@ const playerBet = async (ctx, next) => {
     }
     globalBatInfo.money = parseFloat(globalBatInfo.money)
     globalBatInfo.count = parseInt(globalBatInfo.count)
-    await cache.setHashCache(`${PLAYER_BET}__${periodNo}_{rateId}`, ['money', globalBatInfo.money + body.money, 'count', globalBatInfo.count + 1])
+    await cache.setHashCache(`${PLAYER_BET}_${body.periodNo}_${data.rateId}`, ['money', globalBatInfo.money + body.money, 'count', globalBatInfo.count + 1])
   } catch (err) {
-    return Promise.reject('下注失败')
+    return Promise.reject(`下注失败${err}`)
   }
-  return Promise.resolve(true)
+  return Promise.resolve('下注成功')
 }
 
 export default {

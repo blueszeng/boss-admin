@@ -8,17 +8,15 @@ export default (sequelize, DataTypes) => {
       autoIncrement: true
     },
     money: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       validate: {
         notEmpty: true,
-        len: [1, 50]
-      }
+       }
     },
     commission: {
       type: DataTypes.INTEGER,
       validate: {
         notEmpty: true,
-        isEmail: true
       }
     }
   }, {

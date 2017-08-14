@@ -5,7 +5,7 @@ import { env } from '../configs/config'
 import database from '../configs/database'
 import _debug from 'debug'
 
-const debug = _debug('backend:models:index')
+const log = _debug('backend:models:index')
 const config = database[env]
 const basename = path.basename(module.filename)
 const db = {}
@@ -26,9 +26,9 @@ fs.readdirSync(__dirname).forEach((file) => {
 async function initCreateDb(sequelize) {
   try {
     await sequelize.sync({ force: false })
-    debug('init createDb successed')
+    log('init createDb successed' )
   } catch (err) {
-     console.log(`init createDb failed to error: ${err}`)
+     log(`init createDb failed to error: ${err}`)
   }
 }
 initCreateDb(sequelize)

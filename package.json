@@ -29,6 +29,7 @@
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
     "log4js": "^1.1.1",
+    "moment": "^2.18.1",
     "mysql": "^2.13.0",
     "node-schedule": "^1.2.3",
     "path-to-regexp": "^1.7.0",
@@ -40,8 +41,8 @@
     "testcafe": "^0.14.0",
     "toastr": "^2.1.2",
     "uuid": "^3.0.1",
-    "wechat-oauth": "^1.2.1",
     "wechat-api": "^1.35.0",
+    "wechat-oauth": "^1.2.1",
     "wechat-pay": "^0.2.5",
     "xml2js": "^0.4.17"
   },

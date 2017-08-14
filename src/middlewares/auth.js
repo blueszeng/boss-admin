@@ -17,7 +17,8 @@ const allowPassPathAndMethod = (path, method) => {
   const allowedPathMethods = [
     { path: '/api/auth/loginLocal', method: 'POST' },
     { path: '/api/auth/loginWechat', method: 'POST' },
-    { path: '/api/bet/playerBet', method: 'POST' }
+    { path: '/api/bet/playerBet', method: 'POST' },
+    { path: '/api/wechat/pay', method: 'POST' },
   ]
   let isAllowed = false
   for (let allowedPathMethod of allowedPathMethods) {

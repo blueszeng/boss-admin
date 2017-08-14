@@ -8,7 +8,7 @@ export const initConfig = {
   mchId: config.wechatMchid,
   notifyUrl: config.wechatNotifyUrl,
   partnerKey: config.wechatPayApiKey,
-  pfx: fs.readFileSync(path.resolve(__dirname, '../apiclient_cert.p12'))
+  // pfx: fs.readFileSync(path.resolve(__dirname, '../apiclient_cert.p12'))
 }
 
 export const payment = new Payment(initConfig)
