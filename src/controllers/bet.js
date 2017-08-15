@@ -21,6 +21,13 @@ const initConfig = async () => {
 initConfig()
 
 
+
+const searchPlayerBets = async (ctx, next) => {
+  const userId = ctx.state.userId
+
+}
+
+
 const playerBet = async (ctx, next) => {
   let body = ctx.request.body
   // 参数验证
@@ -60,9 +67,10 @@ const playerBet = async (ctx, next) => {
       state: 0
     }
     // log(data)
+    
     await transaction(async (t) => {
       await models.Bet.create(data, { transaction: t })
-      await models.User.update({ money: models.User.get() - data.money },  { where: {id: data.userId} }, { transaction: t })
+      await models.User.update({ money: user.money - data.money },  { where: {id: data.userId} }, { transaction: t })
       return Promise.resolve(true)
     })
     // 写入缓存信息
@@ -84,5 +92,6 @@ const playerBet = async (ctx, next) => {
 }
 
 export default {
-  playerBet
+  playerBet,
+  searchPlayerBets
 }
