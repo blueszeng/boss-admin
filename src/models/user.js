@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import config from '../configs/config'
 export default (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+    const User = sequelize.define('AdminUser', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
