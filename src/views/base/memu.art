@@ -1,0 +1,17 @@
+
+
+<!--_menu 作为公共模版分离出去-->
+<aside class="Hui-admin-aside-wrapper">
+    <div class="Hui-admin-logo-wrapper">
+        <a class="logo navbar-logo" href="/aboutHui.shtml">
+            <i class="va-m iconpic global-logo"></i>
+            <span class="va-m">H-ui.admin</span>
+        </a>
+    </div>
+    <div class="Hui-admin-menu-dropdown bk_2">
+        {{#menu}}
+    </dl>
+    </div>
+</aside>
+<div class="Hui-admin-aside-mask"></div>
+<!--/_menu 作为公共模版分离出去-->

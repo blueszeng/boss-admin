@@ -1,15 +1,9 @@
-import debug from 'debug'
-const log = debug('app:log')
-import $ from 'jquery'
+import debug from './debug'
 import popup from './popup'
-if (ENV !== 'production') {
-  // Enable the logger.
-  debug.enable('*')
-  log('Logging is enabled!')
-} else {
-  debug.disable()
-}
+import $ from 'jquery'
+const log = debug.debug('app:log')
+
 if ($('#sysmsg').attr('msg') && $('#sysmsg').attr('status')) {
-  popup.toastrPopup($('#sysmsg').attr('status'), $('#sysmsg').attr('msg'))
+    popup.toastrPopup($('#sysmsg').attr('status'), $('#sysmsg').attr('msg'))
 }
 export default log

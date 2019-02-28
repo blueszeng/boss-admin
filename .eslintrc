@@ -1,17 +1,23 @@
 {
-  "parser"  : "babel-eslint",
-  "extends" : [
-    "standard"
-  ],
-  "env"     : {
-    "browser" : false,
-    "node": true,
-    "es6": true
-  },
-  "globals": {
-    "ENV": true
-  },
-  "rules": {
-    "arrow-parens": 0
-  }
+    "parser": "babel-eslint",
+    "extends": [
+        "standard"
+    ],
+    "env": {
+        "browser": false,
+        "node": true,
+        "es6": true
+    },
+    "globals": {
+        "ENV": true
+    },
+    "rules": {
+        "arrow-parens": 0,
+        "eol-last": ["warn", "never"],
+        "no-multiple-empty-lines": [1, { "max": 2 }],
+        "space-before-function-paren": ["error", "never"],
+        "indent": [2, 4, {
+            "SwitchCase": 1
+        }]
+    }
 }

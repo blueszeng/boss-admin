@@ -13,55 +13,63 @@ var cssnext = require('postcss-cssnext')
 var cssnano = require('cssnano')
 var cache = {}
 
-gulp.task('watch', function () {
-  gulp.watch('src/assert/scripts/**/*', ['rollup'])
+process.on('unhandledRejection', error => {
+  console.error('unhandledRejection', error);
+  // process.exit(1) // To exit with a 'failure' code
+});
+
+gulp.task('watch', function() {
+    gulp.watch('src/assert/scripts/**/*', ['rollup'])
 })
-gulp.task('rollup', function () {
-  return gulp.src('src/assert/scripts/*.js')
-  .pipe(
-    rollup({ plugins: [
-      postcss({
-        plugins: [
-          simplevars(),
-          nested(),
-          cssnext({ warnForDuplicates: false }),
-          cssnano()
-        ],
-        extensions: [ '.css' ]
-      }),
-      resolve({
-        jsnext: true,
-        browser: true,
-        main: true
-      }),
-      commonjs(),
-      eslint({
-        exclude: [
-          'src/assert/styles/**'
-        ]
-      }),
-      babel({
-        exclude: 'node_modules/**',
-        presets: [
-          [
-            'es2015',
-            {
-              'modules': false
-            }
-          ]
-        ],
-        plugins: [
-          'external-helpers'
-        ],
-        babelrc: false
-      }),
-      replace({
-        // exclude: 'node_modules/**',
-        ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-      }),
-      (process.env.NODE_ENV === 'production' && uglify())
-    ]}), cache, function (bundle, filePath) {
-      // cache[filePath] = bundle
-    })
-    .pipe(gulp.dest('src/public/js'))
+gulp.task('rollup', function() {
+    return gulp.src('src/assert/scripts/*.js')
+        .pipe(
+            rollup({
+                plugins: [
+                    postcss({
+                        plugins: [
+                            simplevars(),
+                            nested(),
+                            cssnext({ warnForDuplicates: false }),
+                            cssnano()
+                        ],
+                        extensions: ['.css']
+                    }),
+                    resolve({
+                        jsnext: true,
+                        browser: true,
+                        main: true
+                    }),
+                    commonjs(),
+                    eslint({
+                        exclude: [
+                            'src/assert/styles/**'
+                        ]
+                    }),
+                    babel({
+                        exclude: 'node_modules/**',
+                        presets: [
+                            [
+                                'es2015',
+                                {
+                                    'modules': false
+                                }
+                            ]
+                        ],
+                        plugins: [
+                            'external-helpers'
+                        ],
+                        babelrc: false
+                    }),
+                    replace({
+                        // exclude: 'node_modules/**',
+                        ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+                    }),
+                    (process.env.NODE_ENV === 'production' && uglify())
+                ]
+            }), cache,
+            function(bundle, filePath) {
+                // cache[filePath] = bundle
+            })
+        .pipe(gulp.dest('src/public/js'))
 })

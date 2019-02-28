@@ -4,14 +4,14 @@ const production = require('./production')
 
 const env = process.env.NODE_ENV || 'development'
 const configs = {
-  development: development,
-  production: production
+    development: development,
+    production: production
 }
 const defaultConfig = {
-  env: env,
-  salt: 'zengyong'
+    env: env,
+    salt: 'zengyong'
 }
 
 const config = _.merge(defaultConfig, configs[env])
-// console.log(config)
+    // console.log(config)
 module.exports = config
