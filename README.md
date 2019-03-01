@@ -1,4 +1,5 @@
-npm install  插入包 <br />
+npm install cnpm -g
+cnpm install  插入包 <br />
 npm start  watch  -- 监听前端 <br />
 npm start  -- 监听后端 <br />
 npm run e2e -- 运行e2e测试 <br />
