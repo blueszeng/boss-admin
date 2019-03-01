@@ -1,4 +1,4 @@
-npm install cnpm -g
+npm install cnpm -g <br />
 cnpm install  插入包 <br />
 npm start  watch  -- 监听前端 <br />
 npm start  -- 监听后端 <br />
